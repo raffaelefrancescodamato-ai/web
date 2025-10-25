@@ -28,7 +28,7 @@ body {
   margin: 0;
   padding-top: 128px;
   font-family: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
-  font-size: clamp(16px, 1vw + 14px, 19px);
+  font-size: clamp(16px, 0.4vw + 15px, 18px);
   color: var(--text);
   min-height: 100vh;
   line-height: 1.7;
@@ -206,7 +206,7 @@ img {
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: clamp(2.5rem, 8vw, 4rem);
+  gap: clamp(2rem, 6vw, 3rem);
   align-items: center;
 }
 
@@ -297,8 +297,8 @@ img {
 
 .hero-glance {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-  gap: 0.8rem;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 1rem;
   margin-top: 0.5rem;
   list-style: none;
   padding: 0;
@@ -446,7 +446,7 @@ img {
 
 .hero-card {
   position: relative;
-  padding: 1.2rem 1.4rem;
+  padding: clamp(1rem, 1.2vw + 0.6rem, 1.4rem);
   border-radius: 24px;
   border: 1px solid rgba(76, 83, 255, 0.4);
   background: rgba(4, 6, 24, 0.9);
@@ -589,13 +589,14 @@ img {
 .section-inner {
   width: min(100%, var(--layout-max));
   margin: 0 auto;
-  display: grid;
+  display: flex;
+  flex-direction: column;
   gap: clamp(1.8rem, 4vw, 3rem);
 }
 
 .section-heading {
   max-width: min(42rem, 100%);
-  margin: 0 auto 2.6rem;
+  margin: 0 auto 2rem;
   width: 100%;
   text-align: left;
 }
@@ -613,14 +614,14 @@ img {
 .service-grid {
   counter-reset: services;
   display: grid;
-  gap: 1.8rem;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: clamp(1.2rem, 4vw, 1.8rem);
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
 }
 
 .service-card {
   counter-increment: services;
   position: relative;
-  padding: 1.9rem;
+  padding: clamp(1.5rem, 3vw, 1.9rem);
   background: rgba(6, 8, 26, 0.85);
   border-radius: var(--radius);
   border: 1px solid rgba(76, 83, 255, 0.25);
@@ -962,7 +963,7 @@ img {
   max-width: 44rem;
   width: 100%;
   margin: 0 auto;
-  padding: 2.6rem;
+  padding: clamp(2rem, 5vw, 2.6rem);
   border-radius: calc(var(--radius) + 6px);
   border: 1px solid var(--border);
   background: rgba(14, 18, 42, 0.92);
@@ -1050,7 +1051,7 @@ img {
 .contact-grid {
   position: relative;
   display: grid;
-  gap: clamp(2rem, 6vw, 3.5rem);
+  gap: clamp(1.2rem, 4vw, 2.5rem);
   grid-template-columns: repeat(2, minmax(0, 1fr));
   align-items: start;
   z-index: 1;
@@ -1178,20 +1179,20 @@ img {
   .hero-grid {
     grid-template-columns: 1fr;
     text-align: center;
+    gap: 2.5rem;
   }
 
   .hero-content {
     justify-self: center;
+    max-width: 32rem;
+    margin: 0 auto;
   }
 
-  .hero-badges,
-  .hero-actions,
-  .hero-glance {
+  .hero-content .hero-badges,
+  .hero-content .hero-actions,
+  .hero-content .hero-glance,
+  .hero-content .hero-stats {
     justify-content: center;
-  }
-
-  .hero-glance,
-  .hero-stats {
     text-align: center;
   }
 
@@ -1258,27 +1259,34 @@ img {
   }
 
   .hero {
-    padding-bottom: 5rem;
+    padding-bottom: 4rem;
   }
 
   .hero-visual {
-    width: 100%;
+    width: min(420px, 100%);
+    margin-inline: auto;
   }
 
   .pulse-orb {
-    width: min(280px, 70vw);
+    width: min(220px, 60vw);
   }
 
   .hero-card {
     text-align: center;
+    padding: 1rem 1.2rem;
   }
 
   .channel-pills {
     justify-content: center;
   }
 
+  .section-inner {
+    gap: 1.5rem;
+  }
+
   .section-heading {
-    margin-bottom: 2.1rem;
+    margin-bottom: 1.2rem;
+    text-align: center;
   }
 
   .contact-grid,
