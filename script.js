@@ -58,7 +58,7 @@ document.addEventListener("DOMContentLoaded", () => {
     yearEl.textContent = new Date().getFullYear().toString();
   }
 
-  const CHAT_ENDPOINTS = ["http://localhost:5678/webhook/9f318726-fe39-40d6-85a3-359b587a315e/chat"];
+  const CHAT_ENDPOINTS = ["https://delayed-rejected-exercises-duties.trycloudflare.com/webhook/55658e4f-bb78-4711-99e6-7850239c5326/chat"];
   const SESSION_KEY = "rfd_chat_session_id";
   const chatForm = document.getElementById("chat-form");
   const chatTextarea = document.getElementById("chat-message");
