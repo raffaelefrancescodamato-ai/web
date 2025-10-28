@@ -222,7 +222,7 @@
             <p><strong>WhatsApp:</strong> <a href="https://wa.me/393663558391?text=Ciao%20Raffaele%2C%20ho%20visto%20il%20tuo%20sito%20e%20vorrei%20maggiori%20informazioni" target="_blank" rel="noreferrer">wa.me/393663558391</a></p>
             <a class="btn primary" href="https://wa.me/393663558391?text=Ciao%20Raffaele%2C%20ho%20visto%20il%20tuo%20sito%20e%20vorrei%20maggiori%20informazioni" target="_blank" rel="noreferrer">Scrivimi su WhatsApp</a>
           </div>
-          <form class="contact-form fade-in" action="#" method="post">
+          <form class="contact-form fade-in" id="contact-form" action="#" method="post">
             <label for="nome">Nome</label>
             <input id="nome" name="nome" type="text" placeholder="Il tuo nome" required>
 
@@ -233,6 +233,7 @@
             <textarea id="messaggio" name="messaggio" rows="4" placeholder="Raccontami di cosa hai bisogno" required></textarea>
 
             <button class="btn primary" type="submit">Invia il messaggio</button>
+            <p class="form-status" id="contact-status" role="status" aria-live="polite"></p>
           </form>
         </div>
       </div>

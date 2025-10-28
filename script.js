@@ -64,6 +64,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const chatTextarea = document.getElementById("chat-message");
   const chatMessages = document.getElementById("chat-messages");
   const chatStatus = document.getElementById("chat-status");
+  const CONTACT_WEBHOOK_URL =
+    "https://delayed-rejected-exercises-duties.trycloudflare.com/webhook-test/55e08c54-35f6-41ca-bcf7-d32e53e72102";
 
   if (chatForm && chatTextarea && chatMessages) {
     const storage = window.sessionStorage ?? null;
@@ -284,6 +286,83 @@ document.addEventListener("DOMContentLoaded", () => {
         appendMessage("assistant", "Ops, qualcosa è andato storto. Riproviamo fra qualche secondo?");
       } finally {
         toggleFormDisabled(false);
+      }
+    });
+  }
+
+  const contactForm = document.getElementById("contact-form");
+  const contactStatus = document.getElementById("contact-status");
+
+  if (contactForm) {
+    const contactSubmitButton = contactForm.querySelector("button[type='submit']");
+
+    const setContactStatus = (message, state) => {
+      if (!contactStatus) {
+        return;
+      }
+      contactStatus.textContent = message ?? "";
+      contactStatus.classList.remove("error", "success");
+      if (state === "error") {
+        contactStatus.classList.add("error");
+      } else if (state === "success") {
+        contactStatus.classList.add("success");
+      }
+    };
+
+    const toggleContactDisabled = (disabled) => {
+      if (disabled) {
+        contactForm.classList.add("is-sending");
+      } else {
+        contactForm.classList.remove("is-sending");
+      }
+      if (contactSubmitButton) {
+        contactSubmitButton.disabled = disabled;
+      }
+      const controls = contactForm.querySelectorAll("input, textarea");
+      controls.forEach((control) => {
+        control.disabled = disabled;
+      });
+    };
+
+    contactForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+
+      const formData = new FormData(contactForm);
+      const payload = {
+        nome: (formData.get("nome") ?? "").toString().trim(),
+        email: (formData.get("email") ?? "").toString().trim(),
+        messaggio: (formData.get("messaggio") ?? "").toString().trim(),
+      };
+
+      if (!payload.nome || !payload.email || !payload.messaggio) {
+        setContactStatus("Compila tutti i campi richiesti.", "error");
+        return;
+      }
+
+      try {
+        toggleContactDisabled(true);
+        setContactStatus("Invio in corso...", null);
+
+        const response = await fetch(CONTACT_WEBHOOK_URL, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(payload),
+        });
+
+        if (!response.ok) {
+          const errorText = await response.text().catch(() => "");
+          throw new Error(errorText || "Errore durante l'invio del messaggio.");
+        }
+
+        setContactStatus("Messaggio inviato! Ti ricontatterò al più presto.", "success");
+        contactForm.reset();
+      } catch (error) {
+        console.error("Errore durante l'invio del modulo di contatto:", error);
+        setContactStatus("Si è verificato un errore. Riprova tra qualche minuto.", "error");
+      } finally {
+        toggleContactDisabled(false);
       }
     });
   }

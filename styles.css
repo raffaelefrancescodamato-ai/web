@@ -1122,6 +1122,25 @@ img {
   box-shadow: 0 0 0 3px rgba(76, 83, 255, 0.18);
 }
 
+.contact-form.is-sending {
+  opacity: 0.85;
+}
+
+.form-status {
+  min-height: 1.2rem;
+  margin: 0.25rem 0 0;
+  font-size: 0.95rem;
+  color: rgba(246, 247, 255, 0.7);
+}
+
+.form-status.success {
+  color: #89f7c2;
+}
+
+.form-status.error {
+  color: #ff9a9a;
+}
+
 .footer {
   padding: 2.2rem clamp(1.75rem, 5vw, 6rem);
   background: rgba(5, 7, 20, 0.9);
