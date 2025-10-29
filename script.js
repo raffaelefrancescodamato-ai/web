@@ -65,7 +65,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const chatMessages = document.getElementById("chat-messages");
   const chatStatus = document.getElementById("chat-status");
   const CONTACT_WEBHOOK_URL =
-    "https://delayed-rejected-exercises-duties.trycloudflare.com/webhook/55e08c54-35f6-41ca-bcf7-d32e53e72102";
+    "https://delayed-rejected-exercises-duties.trycloudflare.com/webhook-test/55e08c54-35f6-41ca-bcf7-d32e53e72102";
 
   if (chatForm && chatTextarea && chatMessages) {
     const storage = window.sessionStorage ?? null;
